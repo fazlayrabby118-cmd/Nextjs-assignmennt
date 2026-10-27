@@ -7,6 +7,18 @@ const nextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   reactCompiler: true,
+  // "https://i.pravatar.cc/150?img=12
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.pravatar.cc',
+        port: '',
+        pathname: '/150/**',
+        
+      },
+    ],
+  },
   turbopack: {
     rules: {
       "*.css": {
