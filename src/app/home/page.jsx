@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 
 const HomePage = () => {
@@ -150,9 +151,8 @@ const HomePage = () => {
         }
     ];
 
-
-
     return (
+
         <div>
             {/* Friends to keep close in your life
              this section here */}
@@ -199,37 +199,42 @@ const HomePage = () => {
                     <h1 className="text-4xl font-bold  border-t-1 border-gray-400 py-6">Your Friends</h1>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                    {datas.map(data => <div key={data.id} className="card bg-base-100  shadow-xl">
-                        <figure className="px-5 pt-5">
-                            <Image
-                                src={data.picture}
-                                alt={data.name}
-                                className="rounded-full"
-                                width={140}
-                                height={140}>
+                    {datas.map(data =>
 
-                            </Image>
-                        </figure>
-                        <div className="card-body items-center text-center">
-                            <h2 className="card-title font-bold text-green-950">{data.name}</h2>
-                            <p className="text-gray-400">{data.days_since_contact}d ago</p>
-                            <div>
-                            {/* {data.tags(map((tag,index)=> <button key={index}>{tag}</button> ))} */}
+                        <Link key={data.id} href={`/home/${data.id}`}>
+                            <div key={data.id} className="card bg-base-100  shadow-xl">
+                                <figure className="px-5 pt-5">
+                                    <Image
+                                        src={data.picture}
+                                        alt={data.name}
+                                        className="rounded-full"
+                                        width={140}
+                                        height={140}>
 
+                                    </Image>
+                                </figure>
+                                <div className="card-body items-center text-center">
+                                    <h2 className="card-title font-bold text-green-950">{data.name}</h2>
+                                    <p className="text-gray-400">{data.days_since_contact}d ago</p>
+                                    <div>
+                                        {/* {data.tags(map((tag,index)=> <button key={index}>{tag}</button> ))} */}
+
+                                    </div>
+                                    <button></button>
+                                    <div className="card-actions">
+                                        <button className={`btn rounded-4xl text-white
+                                ${data.status === 'overdue' ? 'bg-red-500' : 'bg-green-950'}`}
+                                        >{data.status}</button>
+                                    </div>
+                                </div>
                             </div>
-                            <button></button>
-                            <div className="card-actions">
-                                <button className={`btn rounded-4xl text-white
-                                ${data.status === 'overdue' ? 'bg-red-500' : 'bg-green-950' }`}
-                                >{data.status}</button>
-                            </div>
-                        </div>
-                    </div>)
+                        </Link>)
                     }
                 </div>
 
             </div>
         </div>
+
     );
 };
 
